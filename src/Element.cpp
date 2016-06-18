@@ -1,15 +1,10 @@
-/*
- * Element.cpp
- *
- *  Created on: May 22, 2016
- *      Author: raydelto
- */
-
 #include "Element.h"
-#include <cstdlib>
-using namespace std;
+namespace GestorElementosVMeta{
 
-Element::Element(string name): _next(NULL), _name(name)
-{
+     Element::Element(std::string name , int quantity):_name(name), _next(NULL), _quantity(quantity){
+
+     }
+
+
 
 }

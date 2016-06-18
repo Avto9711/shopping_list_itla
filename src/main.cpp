@@ -1,10 +1,8 @@
-#include <iostream>
-using namespace std;
 #include "Menu.h"
-
+using namespace GestorElementosVMeta;
+ Menu* menu  = new Menu();
 int main()
 {
-	Menu menu;
-	menu.show();
-	return EXIT_SUCCESS;
+    menu->init();
+    return 0;
 }

@@ -1,104 +1,79 @@
-/*
- * Menu.cpp
- *
- *  Created on: May 22, 2016
- *      Author: raydelto
- */
-
 #include "Menu.h"
-#include <iostream>
-using namespace std;
-
-Menu::Menu()
-{
-
-}
-
-void Menu::clearScreen()
-{
-	#ifdef _WIN32
-	system("cls");
-	#else
-	system("clear");
-	#endif
-}
-
-void Menu::pause()
-{
-	#ifdef _WIN32
-	system("pause");
-	#else
-	system("read -n1 -r -p \"Press any key to continue...\" key");
-	#endif
-}
 
 
-bool Menu::validate(int option)
-{
-	if(option >= 1 && option <= 4)
-	{
-		return true;
-	}else
-	{
-		cout << "Please pick an option between 1 and 4"<< endl;
-		pause();
-		return false;
-	}
-}
+namespace GestorElementosVMeta{
 
-void Menu::routeAction(int option)
-{
-	switch(option)
-	{
-	case 1:
-		listItems();
-		break;
-	case 2:
-		addItems();
-		break;
-	case 3:
-		removeItems();
-		break;
-	case 4:
-		cout << "Thanks for using our software, good bye!" << endl;
-	}
-	pause();
-}
+    void Menu::init(){
+        createScreen();
+    }
 
-void Menu::listItems()
-{
-	//TODO: Implement this
-	cout << "Implement  Menu::listItems" << endl;
-}
+    void Menu::createScreen(){
+        system("CLS");
 
-void Menu::addItems()
-{
-	//TODO: Implement this
-	cout << "Implement  Menu::addItems" << endl;
-}
+        int option;
 
-void Menu::removeItems()
-{
-	//TODO: Implement this
-	cout << "Implement  Menu::removeItems" << endl;
-}
+        cout<<"Welcome to you new software to manage your food" <<endl;
+        cout<<""<<endl;
+        cout<<"Please, select an option of the menu "<<endl;
+        cout<<"1. List articles"<<endl;
+        cout<<"2. Add articles"<<endl;
+        cout<<"3. Delete article "<<endl;
+        cout<<"4. Quit"<<endl;
+        cin>> option;
 
-void Menu::show()
-{
-	int option;
-	do
-	{
-		clearScreen();
-		cout << "ITLA Shopping List" << endl;
-		cout << "1- List items" << endl;
-		cout << "2- Add Item" << endl;
-		cout << "3- Remove Item" << endl;
-		cout << "4- Exit" << endl;
-		cout << "Select an option => ";
-		cin >> option;
-		if(validate(option))
-		{
-			routeAction(option);
-		}
-	}while(option !=4);
+        if(option == 2){
+            addArticleScreen();
+
+        }else if(option == 1){
+            listArticleScreen();
+            cout<<"Press enter to go back"<< endl;
+            cin.ignore();
+            cin.get();
+            createScreen();
+        }else if(option == 3){
+            listDeleteScreen();
+            cout<< "Item deleted"<< endl;
+            cout<<"Press enter to go back"<< endl;
+            cin.ignore();
+            cin.get();
+            createScreen();
+        }
+    }
+
+        void Menu::addArticleScreen(){
+
+
+            string name;
+            int quantity;
+            cout<<"Introduce the name of the product: ";
+            cin>> name;
+            cout<<"Introduce the quantity: ";
+            cin>>quantity;
+
+            productList->add(new Element(name,quantity));
+            cout<<"Article added"<< endl;
+
+            cout<<"Press enter to go back"<< endl;
+            cin.ignore();
+            cin.get();
+            createScreen();
+        }
+        void Menu::listArticleScreen(){
+            productList->getAll();
+
+
+        }
+
+        void Menu::listDeleteScreen(){
+            int number;
+            listArticleScreen();
+               cout <<"Select the number of the item you want to delete."<< endl;
+               cin>> number;
+               productList->deleteItem(number);
+
+
+        }
+
+
+
 }

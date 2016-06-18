@@ -1,23 +1,41 @@
-/*
- * Element.h
- *
- *  Created on: May 22, 2016
- *      Author: raydelto
- */
-
-#ifndef ELEMENT_H_
-#define ELEMENT_H_
+#ifndef ELEMENT_H_INCLUDED
+#define ELEMENT_H_INCLUDED
 #include <string>
-class Element
-{
-	public:
-		Element(std::string name);
+#include <cstdlib>
+#include <iostream>
+using namespace std;
 
-	private:
-		Element* _next;
-		std::string _name;
-		//This means that List can access to all private members of this class
-		friend class List;
-};
+namespace GestorElementosVMeta{
 
-#endif /* ELEMENT_H_ */
+    class Element{
+    public:
+        std::string getName(){
+            return _name;
+        }
+        int getQuantity(){
+            return _quantity;
+        }
+
+
+        void setNext(Element* next){
+            _next = next;
+        }
+
+        Element* getNext(){
+            return _next;
+        }
+
+        Element(std::string name, int quantity);
+
+
+
+    private:
+        std::string _name;
+        int _quantity;
+        Element* _next;
+
+    };
+
+}
+
+#endif // ELEMENT_H_INCLUDED

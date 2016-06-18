@@ -1,30 +1,54 @@
-/*
- * List.cpp
- *
- *  Created on: May 22, 2016
- *      Author: raydelto
- */
-
 #include "List.h"
-#include <iostream>
-#include <cstdlib>
-using namespace std;
-
-List::List(): _first(NULL), _last(NULL)
-{
 
 
-}
+namespace GestorElementosVMeta{
 
-void List::add(Element* element)
-{
-	//TODO: Implement this method
-	cout << "You should write the code for adding " << element -> _name << endl;
+    List::List(): _first(NULL), _last(NULL){}
 
-}
 
-void List::remove(int index)
-{
-	//TODO: Implement this method
-	cout << "You should write the code for removing the index " << index << endl;
+     void List::add(Element* Element){
+
+        if(_first == NULL){
+            _first = Element;
+            _last = Element;
+        }else{
+            _last->setNext(Element);
+            _last = Element;
+        }
+     }
+
+     void List::getAll(){
+         int i=1;
+         Element* element = _first;
+
+        while(element!=NULL){
+            cout<<i<<" - "<<element->getName()<< " ";
+            cout<<element->getQuantity()<< endl;
+
+            element = element->getNext();
+            i++;
+        }
+     }
+
+     void List::deleteItem(int number){
+        int i=1;
+
+         Element* element = _first;
+         Element* element2 = NULL;
+        while(element!=NULL){
+
+            if(number == i){
+                if(element == _first){
+                    _first = element->getNext();
+                    break;
+                }
+                element2->setNext(element->getNext());
+                break;
+            }else{
+                element2= element;
+                element = element->getNext();
+                i++;
+            }
+        }
+     }
 }

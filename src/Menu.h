@@ -1,27 +1,26 @@
-/*
- * Menu.h
- *
- *  Created on: May 22, 2016
- *      Author: raydelto
- */
-
-#ifndef MENU_H_
-#define MENU_H_
+#ifndef MENU_H_INCLUDED
+#define MENU_H_INCLUDED
 #include "List.h"
 
-class Menu
-{
-	private:
-		void clearScreen();
-		void listItems();
-		void addItems();
-		void removeItems();
-		bool validate(int option);
-		void routeAction(int option);
-		void pause();
-	public:
-		Menu();
-		void show();
-};
+namespace GestorElementosVMeta{
 
-#endif /* MENU_H_ */
+
+    class Menu{
+        public:
+        List* productList = new List();
+
+        void init();
+
+        private:
+        void createScreen();
+        void addArticleScreen();
+        void listArticleScreen();
+        void listDeleteScreen();
+
+
+    };
+
+}
+
+
+#endif // MENU_H_INCLUDED

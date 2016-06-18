@@ -1,22 +1,25 @@
-/*
- * List.h
- *
- *  Created on: May 22, 2016
- *      Author: raydelto
- */
-
-#ifndef LIST_H_
-#define LIST_H_
+#ifndef LIST_H_INCLUDED
+#define LIST_H_INCLUDED
 #include "Element.h"
-class List
-{
-	public:
-		List();
-		void add(Element* element);
-		void remove(int index);
-	private:
-		Element* _first;
-		Element* _last;
-};
 
-#endif /* LIST_H_ */
+namespace GestorElementosVMeta{
+    class List{
+
+    private:
+        Element* _first;
+        Element* _last;
+    public:
+      List();
+      void getAll();
+      void deleteItem(int number);
+      Element* getFirst(){
+          return _first;
+      }
+
+        void add(Element* Element);
+    };
+
+}
+
+
+#endif // LIST_H_INCLUDED
